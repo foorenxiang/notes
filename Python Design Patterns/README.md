@@ -8,7 +8,7 @@
 1. Uncertainties in types of objects
 2. Decisions on what classes to be used can only be made at runtime
 <!-- Codeblock start -->
-``` 
+``` python
 class Dog:
 
     """A simple dog class"""
@@ -61,7 +61,7 @@ print(c.speak())
 ### Problem:
 1. User expectation yields **multiple**, related objects
 <!-- Codeblock start -->
-``` 
+``` python
 """abstract factory: pet factory"""
 """concrete factory: dog factory and cat factory"""
 """abstract product"""
@@ -127,7 +127,7 @@ shop.show_pet()
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Borg:
     """Borg pattern making the class attributes global"""
 
@@ -172,7 +172,7 @@ print(y)
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Director:
     """Director"""
 
@@ -240,7 +240,7 @@ print(car)
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 import copy
 
 
@@ -292,7 +292,7 @@ print(c1)
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 from functools import wraps
 
 
@@ -340,7 +340,7 @@ print(hello_world.__doc__)
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 import time
 
 
@@ -401,7 +401,7 @@ p.produce()
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Korean:
     """Korean speaker"""
 
@@ -466,7 +466,7 @@ for obj in objects:
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Component(object):
     """Abstract class"""
 
@@ -559,7 +559,7 @@ top.component_function()
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class DrawingAPIOne(object):
     """Implementation-specific abstraction: concrete class one"""
 
@@ -614,7 +614,7 @@ circle2.draw()
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Subject(object):  # Represents what is being 'observed'
     def __init__(self):
         self._observers = (
@@ -695,7 +695,7 @@ c1.temp = 90
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class House(object):  # The class being visited
     def accept(self, visitor):
         """Interface to accept a visitor"""
@@ -766,7 +766,7 @@ home.accept(e)
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 def count_to(count):
     """Our iterator implementation"""
 
@@ -803,7 +803,7 @@ for num in count_to(4):
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 import types  # Import the types module
 
 
@@ -860,7 +860,7 @@ s2.execute()
 ### Problem:
 1. 
 <!-- Codeblock start -->
-``` 
+``` python
 class Handler:  # Abstract handler
     """Abstract Handler"""
 
