@@ -60,13 +60,14 @@ print(c.speak())
 # Abstract Factory
 ### Problem:
 1. User expectation yields **multiple**, related objects
+
+### Solution:
+1. Abstract factory e.g. pet factory
+2. Concrete factory e.g. dog factory and cat factory
+3. Abstract product
+4. Concrete product: dog and dog food; cat and cat food
 <!-- Codeblock start -->
 ``` python
-"""abstract factory: pet factory"""
-"""concrete factory: dog factory and cat factory"""
-"""abstract product"""
-"""concrete product: dog and dog food; cat and cat food"""
-
 class Dog:
     """One of the objects to be returned"""
 
@@ -91,6 +92,8 @@ class DogFactory:
 
 class PetStore:
     """PetStore houses our Abstract Factory"""
+    """Used to invoke methods in the concrete factory that is passed into this abstract factory's constructor"""
+    """Essentially acting as an interface"""
 
     def __init__(self, pet_factory=None):
         """pet_factory is our Abstract Factory"""
@@ -125,11 +128,16 @@ shop.show_pet()
 
 ## Singleton
 ### Problem:
-1. 
+1. Only one instance to be instantiated form a class
+2. Create global variable in an objected-oriented way using a singleton
+### Solution:
+1. Module
+   1. Shared by multiple objects
+2. Borg design pattern
 <!-- Codeblock start -->
 ``` python
 class Borg:
-    """Borg pattern making the class attributes global"""
+    """The Borg pattern makes the class attributes global"""
 
     _shared_data = {}  # Attribute dictionary
 
@@ -170,7 +178,13 @@ print(y)
 
 ## Builder
 ### Problem:
-1. 
+1. Excessive number of constructors
+
+### Solution:
+1. Director
+2. Abstract Builder: interfaces
+3. Concrete Builder: implements the interfaces
+4. Product: object being built
 <!-- Codeblock start -->
 ``` python
 class Director:
@@ -238,7 +252,11 @@ print(car)
 
 ## Prototype
 ### Problem:
-1. 
+1. Creating many identical objects individually becomes expensive
+2. Cloning could be a good alternative to creating individual objects one at a time
+### Solution:
+1. Creating a prototypical **instance** first
+2. Simply clone the prototypical instance whenever a replica is needed
 <!-- Codeblock start -->
 ``` python
 import copy
@@ -249,7 +267,7 @@ class Prototype:
         self._objects = {}
 
     def register_object(self, name, obj):
-        """Register an object"""
+        """Register object to be cloned"""
         self._objects[name] = obj
 
     def unregister_object(self, name):
@@ -290,7 +308,8 @@ print(c1)
 
 ## Decorator
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 from functools import wraps
@@ -338,7 +357,8 @@ print(hello_world.__doc__)
 
 ## Proxy
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 import time
@@ -399,7 +419,8 @@ p.produce()
 
 ## Adapter
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class Korean:
@@ -464,7 +485,8 @@ for obj in objects:
 
 ## Composite
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class Component(object):
@@ -557,7 +579,8 @@ top.component_function()
 
 ## Bridge
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class DrawingAPIOne(object):
@@ -612,7 +635,8 @@ circle2.draw()
 
 ## Observer
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class Subject(object):  # Represents what is being 'observed'
@@ -693,7 +717,8 @@ c1.temp = 90
 
 ## Visitor
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class House(object):  # The class being visited
@@ -764,7 +789,8 @@ home.accept(e)
 
 ## Iterator
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 def count_to(count):
@@ -801,7 +827,8 @@ for num in count_to(4):
 
 ## Strategy
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 import types  # Import the types module
@@ -858,7 +885,8 @@ s2.execute()
 
 ## Chain of responsibility
 ### Problem:
-1. 
+
+### Solution:
 <!-- Codeblock start -->
 ``` python
 class Handler:  # Abstract handler
@@ -929,3 +957,399 @@ c.delegate(requests)
 
 # Consistency
 # Other qualities
+
+## **Advanced Design Pattern Notes from [Linkedin Learning](https://www.linkedin.com/learning/python-advanced-design-patterns)**
+<br/>
+
+## Facade
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+class SubsystemA:
+
+	def method1(self):
+		print('SubsystemA method1 ...')
+		
+	def method2(self):
+		print('SubsystemA method2 ...')
+
+class SubsystemB:
+	
+	def method1(self):
+		print('SubsystemB method1 ...')
+		
+	def method2(self):
+		print('SubsystemB method2 ...')
+
+class Facade:
+
+	def __init__(self):
+		self._subsystem_A = SubsystemA()
+		self._subsystem_B = SubsystemB()
+
+	def method(self):
+		self._subsystem_A.method1()
+		self._subsystem_A.method2()
+		
+		self._subsystem_B.method1()
+		self._subsystem_B.method2()
+
+def main():
+	facade = Facade()
+	facade.method()
+
+if __name__ == "__main__":
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## Command
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+class Command:
+	def execute(self):
+		pass
+
+class Copy(Command):
+	def execute(self):
+		print("Copying ...")
+
+class Paste(Command):
+	def execute(self):
+		print("Pasting ...")
+
+class Save(Command):
+	def execute(self):
+		print("Saving ...")
+
+class Macro:
+	def __init__(self):
+		self.commands = []
+
+	def add(self, command):
+		self.commands.append(command)
+
+	def run(self):
+		for o in self.commands:
+			o.execute()
+
+def main():
+	macro = Macro()
+	macro.add(Copy())
+	macro.add(Paste())
+	macro.add(Save())
+	macro.run()
+
+if __name__ == "__main__":
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## Interpreter
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+from abc import ABC, abstractmethod
+
+class AbstractExpression():
+
+	@abstractmethod
+	def interpret(self):
+		pass
+
+class NonterminalExpression(AbstractExpression):
+
+	def __init__(self, expression):
+		self._expression = expression
+
+	def interpret(self):
+		print("Non-terminal expression being interpreted ...")
+		self._expression.interpret()
+
+class TerminalExpression(AbstractExpression):
+
+	def interpret(self):
+		print("Terminal expression being interpreted ...")
+
+def main():
+
+	ast = NonterminalExpression(NonterminalExpression(TerminalExpression()))
+	ast.interpret()
+
+if __name__ == "__main__":
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## Mediator
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+import sys
+
+class Colleague(object):
+	def __init__(self, mediator, id):
+		self._mediator = mediator
+		self._id = id
+
+	def getID(self):
+		return self._id
+
+	def send(self, msg):
+		pass
+
+	def receive(self, msg):
+		pass
+
+class ConcreteColleague(Colleague):
+	def __init__(self, mediator, id):
+		super().__init__(mediator, id)
+
+	def send(self, msg):
+		print("Message '" + msg + "' sent by Colleague " + str(self._id))
+		self._mediator.distribute(self, msg)
+
+	def receive(self, msg):
+		print("Message '" + msg + "' received by Colleague " + str(self._id))
+
+
+class Mediator:
+	def add(self, colleague):
+		pass
+
+	def distribute(self, sender, msg):
+		pass
+
+class ConcreteMediator(Mediator):
+	def __init__(self):
+		Mediator.__init__(self)
+		self._colleague = []
+
+	def add(self, colleague):
+		self._colleague.append(colleague)
+
+	def distribute(self, sender, msg):
+		for colleague in self._colleague:
+			if colleague.getID() != sender.getID():
+				colleague.receive(msg)
+
+
+def main():
+	mediator = ConcreteMediator()
+
+	c1 = ConcreteColleague(mediator, 1)
+	c2 = ConcreteColleague(mediator, 2)
+	c3 = ConcreteColleague(mediator, 3)
+
+	mediator.add(c1)
+	mediator.add(c2)
+	mediator.add(c3)
+
+	c1.send("Good Morning!")
+
+if __name__ == "__main__":
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## Memento
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+import pickle
+
+class Originator:
+
+	def __init__(self):
+		self._state = None
+
+	def create_memento(self):
+		return pickle.dumps(vars(self))
+
+	def set_memento(self, memento):
+		previous_state = pickle.loads(memento)
+		vars(self).clear
+		vars(self).update(previous_state)
+
+def main():
+	originator = Originator()
+
+	print(vars(originator))
+
+	memento = originator.create_memento()
+	
+	originator._state = True
+
+	print(vars(originator))
+
+	originator.set_memento(memento)
+
+	print(vars(originator))
+
+if __name__ == "__main__":
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## State
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+class AtmState():
+
+	name = "state"
+	allowed = []
+
+	def goNext(self, state):
+		if state.name in self.allowed:
+			print("Current State: ", self, " switched to: ", state.name)
+			self.__class__ = state
+
+		else:
+			print("Current State: ", self, " switching to: ", state.name, " not possible!")
+
+	def __str__(self):
+		return self.name
+
+class Off(AtmState):
+
+	name = "off"
+	allowed = ['on']
+
+class On(AtmState):
+
+	name = "on"
+	allowed = ['off']
+
+class ATM():
+	
+	def __init__(self):
+		self.current = Off()
+
+	def setState(self, state):
+		self.current.goNext(state)
+
+def main():
+	atm = ATM()
+
+	atm.setState(On)
+	atm.setState(Off)
+	atm.setState(Off)
+
+if __name__ == "__main__":
+	main()
+
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
+## Template
+### Problem:
+
+### Solution:
+<!-- Codeblock start -->
+``` python
+import sys
+
+from abc import ABC, abstractmethod
+
+class AbstractClass(ABC):
+#This class inherit from Abstract Base Class to allow the use of the @abstractmethod decorator
+    
+	def template_method(self):
+		"""Ths is the template method that contains a collection of 
+		methods to stay the same, to be overriden, and to be overriden optionally.
+		"""
+
+		self.__always_do_this()
+		self.do_step_1()
+		self.do_step_2()
+		self.do_this_or()
+
+	def __always_do_this(self):
+		#This is a protected method that should not be overriden.
+
+		name = sys._getframe().f_code.co_name
+		print('{}.{}'.format(self.__class__.__name__, name))
+
+	@abstractmethod
+	def do_step_1(self):
+		#This method should be overriden
+		pass
+
+	@abstractmethod
+	def do_step_2(self):
+		#This method should be overriden
+		pass
+
+	def do_this_or(self):
+		print('You can overide me but you do not have to')
+
+class ConcreteClassA(AbstractClass):
+#This class inherits from the Abstract class featuring the template method. 
+
+	def do_step_1(self):
+		print('Doing step 1 for ConcreteClassA ...')
+
+	def do_step_2(self):
+		print('Doing step 2 for ConcreteClassA ...')
+
+class ConcreteClassB(AbstractClass):
+#This class inherits from the Abstract class featuring the template method.
+
+	def do_step_1(self):
+		print('Doing step 1 for ConcreteClassB ...')
+
+	def do_step_2(self):
+		print('Doing step 2 for ConcreteClassB ...')
+
+	def do_this_or(self):
+		print('Doing my own business ...')
+
+def main():
+	print('==ConcreteClassA==')
+	a = ConcreteClassA()
+	a.template_method()
+
+	print('==ConcreteClassB==')
+	b = ConcreteClassB()
+	b.template_method()
+
+if __name__ == '__main__':
+	main()
+
+```
+<!-- Codeblock end -->
+<br/>
+<br/>
+
