@@ -250,7 +250,7 @@ print(car)
 <br/>
 
 
-## Prototype
+##  
 ### Problem:
 1. Creating many identical objects individually becomes expensive
 2. Cloning could be a good alternative to creating individual objects one at a time
@@ -308,8 +308,10 @@ print(c1)
 
 ## Decorator
 ### Problem:
+1. Need to add new features to existing object
 
 ### Solution:
+1. Functions, use built-in decorator feature
 <!-- Codeblock start -->
 ``` python
 from functools import wraps
@@ -357,8 +359,12 @@ print(hello_world.__doc__)
 
 ## Proxy
 ### Problem:
+1. Postpone object creation until absolutely necessary
+2. Find a placeholder
 
 ### Solution:
+1. Clients: interacting with a proxy
+2. Proxy: responsible for creating the resource intensive objects
 <!-- Codeblock start -->
 ``` python
 import time
