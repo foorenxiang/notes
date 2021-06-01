@@ -1,14 +1,15 @@
 ## **Design Pattern Notes from [Linkedin Learning](https://www.linkedin.com/learning/python-design-patterns)**
-<br/>
 
 # Creational Patterns
 
 ## Factory
+
 ### Problem:
+
 1. Uncertainties in types of objects
 2. Decisions on what classes to be used can only be made at runtime
-<!-- Codeblock start -->
-``` python
+
+```python
 class Dog:
 
     """A simple dog class"""
@@ -52,22 +53,21 @@ c = get_pet("cat")
 
 print(c.speak())
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 # Abstract Factory
+
 ### Problem:
+
 1. User expectation yields **multiple**, related objects
 
 ### Solution:
+
 1. Abstract factory e.g. pet factory
 2. Concrete factory e.g. dog factory and cat factory
 3. Abstract product
 4. Concrete product: dog and dog food; cat and cat food
-<!-- Codeblock start -->
-``` python
+
+```python
 class Dog:
     """One of the objects to be returned"""
 
@@ -121,21 +121,21 @@ shop = PetStore(factory)
 shop.show_pet()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Singleton
+
 ### Problem:
+
 1. Only one instance to be instantiated form a class
 2. Create global variable in an objected-oriented way using a singleton
+
 ### Solution:
+
 1. Module
    1. Shared by multiple objects
 2. Borg design pattern
-<!-- Codeblock start -->
-``` python
+
+```python
 class Borg:
     """The Borg pattern makes the class attributes global"""
 
@@ -171,22 +171,21 @@ y = Singleton(SNMP="Simple Network Management Protocol")
 print(y)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Builder
+
 ### Problem:
+
 1. Excessive number of constructors
 
 ### Solution:
+
 1. Director
 2. Abstract Builder: interfaces
 3. Concrete Builder: implements the interfaces
 4. Product: object being built
-<!-- Codeblock start -->
-``` python
+
+```python
 class Director:
     """Director"""
 
@@ -245,20 +244,20 @@ car = director.get_car()
 print(car)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
+##
 
-##  
 ### Problem:
+
 1. Creating many identical objects individually becomes expensive
 2. Cloning could be a good alternative to creating individual objects one at a time
+
 ### Solution:
+
 1. Creating a prototypical **instance** first
 2. Simply clone the prototypical instance whenever a replica is needed
-<!-- Codeblock start -->
-``` python
+
+```python
 import copy
 
 
@@ -300,20 +299,20 @@ c1 = prototype.clone("skylark")
 print(c1)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 # Structural Patterns
 
 ## Decorator
+
 ### Problem:
+
 1. Need to add new features to existing object
 
 ### Solution:
+
 1. Functions, use built-in decorator feature
-<!-- Codeblock start -->
-``` python
+
+```python
 from functools import wraps
 
 
@@ -352,21 +351,20 @@ print(hello_world.__name__)
 print(hello_world.__doc__)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Proxy
+
 ### Problem:
+
 1. Postpone object creation until absolutely necessary
 2. Find a placeholder
 
 ### Solution:
+
 1. Clients: interacting with a proxy
 2. Proxy: responsible for creating the resource intensive objects
-<!-- Codeblock start -->
-``` python
+
+```python
 import time
 
 
@@ -418,17 +416,18 @@ p.occupied = "Yes"
 p.produce()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Adapter
+
 ### Problem:
 
+1. Incompatible interfaces
+
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+1. Translation between interfaces
+
+```python
 class Korean:
     """Korean speaker"""
 
@@ -439,7 +438,7 @@ class Korean:
         return "An-neyong?"
 
 
-class British:
+class British:****
     """English speaker"""
 
     def __init__(self):
@@ -484,17 +483,22 @@ for obj in objects:
     print("{} says '{}'\n".format(obj.name, obj.speak()))
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Composite
+
 ### Problem:
 
+1. Recursive tree data structure
+   1. e.g. Menu > Sub-menu > Sub-Sub-menu
+
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+1. Component
+2. Child (inherits from component class)
+3. Composite (inherits from component class)
+   1. Maintains child component classes by adding them to a tree data structure
+
+```python
 class Component(object):
     """Abstract class"""
 
@@ -578,17 +582,20 @@ top.append_child(sub2)
 top.component_function()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Bridge
+
 ### Problem:
 
+1. Two unrelated, parallel or orthogonal abstractions
+2. One is implementation specific
+3. The other is implementation-independent
+
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+1. Separate the abstractions into two different class hierarchies
+
+```python
 class DrawingAPIOne(object):
     """Implementation-specific abstraction: concrete class one"""
 
@@ -633,18 +640,16 @@ circle2 = Circle(2, 3, 4, DrawingAPITwo())
 circle2.draw()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 # Behavioral Patterns
 
 ## Observer
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class Subject(object):  # Represents what is being 'observed'
     def __init__(self):
         self._observers = (
@@ -716,17 +721,14 @@ c1.temp = 80
 c1.temp = 90
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Visitor
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class House(object):  # The class being visited
     def accept(self, visitor):
         """Interface to accept a visitor"""
@@ -788,17 +790,14 @@ home.accept(hv)
 home.accept(e)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Iterator
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 def count_to(count):
     """Our iterator implementation"""
 
@@ -826,17 +825,14 @@ for num in count_to(4):
     print("{}".format(num))
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Strategy
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 import types  # Import the types module
 
 
@@ -884,17 +880,14 @@ s2.name = "Strategy Two"
 s2.execute()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
 
 ## Chain of responsibility
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class Handler:  # Abstract handler
     """Abstract Handler"""
 
@@ -955,37 +948,35 @@ requests = [2, 5, 30]
 c.delegate(requests)
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 # Design Best Practices
 
 # Consistency
+
 # Other qualities
 
 ## **Advanced Design Pattern Notes from [Linkedin Learning](https://www.linkedin.com/learning/python-advanced-design-patterns)**
-<br/>
 
 ## Facade
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class SubsystemA:
 
 	def method1(self):
 		print('SubsystemA method1 ...')
-		
+
 	def method2(self):
 		print('SubsystemA method2 ...')
 
 class SubsystemB:
-	
+
 	def method1(self):
 		print('SubsystemB method1 ...')
-		
+
 	def method2(self):
 		print('SubsystemB method2 ...')
 
@@ -998,7 +989,7 @@ class Facade:
 	def method(self):
 		self._subsystem_A.method1()
 		self._subsystem_A.method2()
-		
+
 		self._subsystem_B.method1()
 		self._subsystem_B.method2()
 
@@ -1010,16 +1001,14 @@ if __name__ == "__main__":
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## Command
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class Command:
 	def execute(self):
 		pass
@@ -1058,16 +1047,14 @@ if __name__ == "__main__":
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## Interpreter
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 from abc import ABC, abstractmethod
 
 class AbstractExpression():
@@ -1099,16 +1086,14 @@ if __name__ == "__main__":
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## Mediator
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 import sys
 
 class Colleague(object):
@@ -1175,16 +1160,14 @@ if __name__ == "__main__":
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## Memento
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 import pickle
 
 class Originator:
@@ -1206,7 +1189,7 @@ def main():
 	print(vars(originator))
 
 	memento = originator.create_memento()
-	
+
 	originator._state = True
 
 	print(vars(originator))
@@ -1219,16 +1202,14 @@ if __name__ == "__main__":
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## State
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 class AtmState():
 
 	name = "state"
@@ -1256,7 +1237,7 @@ class On(AtmState):
 	allowed = ['off']
 
 class ATM():
-	
+
 	def __init__(self):
 		self.current = Off()
 
@@ -1275,25 +1256,23 @@ if __name__ == "__main__":
 
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
 
 ## Template
+
 ### Problem:
 
 ### Solution:
-<!-- Codeblock start -->
-``` python
+
+```python
 import sys
 
 from abc import ABC, abstractmethod
 
 class AbstractClass(ABC):
 #This class inherit from Abstract Base Class to allow the use of the @abstractmethod decorator
-    
+
 	def template_method(self):
-		"""Ths is the template method that contains a collection of 
+		"""Ths is the template method that contains a collection of
 		methods to stay the same, to be overriden, and to be overriden optionally.
 		"""
 
@@ -1322,7 +1301,7 @@ class AbstractClass(ABC):
 		print('You can overide me but you do not have to')
 
 class ConcreteClassA(AbstractClass):
-#This class inherits from the Abstract class featuring the template method. 
+#This class inherits from the Abstract class featuring the template method.
 
 	def do_step_1(self):
 		print('Doing step 1 for ConcreteClassA ...')
@@ -1355,7 +1334,3 @@ if __name__ == '__main__':
 	main()
 
 ```
-<!-- Codeblock end -->
-<br/>
-<br/>
-
