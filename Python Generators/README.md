@@ -1,4 +1,10 @@
-# Generators, Context Managers and
+# Iterators, Generators, Context Managers and Coroutines
+
+## Iterators
+
+- Maintain state
+- Use lazy evaluation
+- Doesn't store sequence in memory (computed at call)
 
 ## Generators
 
@@ -76,6 +82,10 @@ next(even_integers_generator_object)
 4. loops
 
 ### Pipelining generators
+
+- Several steps can be linked together
+- Items flow one by one through the entire pipeline
+- Pipeline functionality can be packaged into callable functions
 
 ```Python
 def fibonacci_numbers(nums):
@@ -211,8 +221,23 @@ def new_log_file(name):
 
 ## Coroutine
 
+- A couroutine is built from a generator, but is conceptually different
+- Functions like a function with state between calls
+  - Functions behave in the same manner every time it is called
+  - Coroutines have persistent properties that can be changed and altered
+- Receive values
+- May not return anything
 - Must always call next first on a raw coroutine before you can use it
-- Use `.send` method to pass it a value e.g. `coroutine_object.send(a_value)`
+
+### send method
+
+- `send()` method are addd to generators for coroutine functionality
+  - Use `.send` method to pass it a value e.g. `coroutine_object.send(a_value)`
+
+### `yield` in couroutines
+
+- Pauses flow
+- Captures sent values
 
 ### Simplest couroutine
 
