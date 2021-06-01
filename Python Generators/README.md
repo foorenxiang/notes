@@ -23,7 +23,7 @@
 - Unlike normal functions, the local variables are not destroyed when the function yields. Furthermore, the generator object can be iterated only once.
 - Generators can be used in for loops directly
 
-```Python
+``` Python
 def generator_function(x):
   for x in range(-x,x+1):
     yield x
@@ -38,7 +38,7 @@ for i in generator_function(100):
    1. Calling the function to get a generator object (the actual generator)
 2. Create an iterable by putting the iterable in `iter(iterable)`
 
-```Python
+``` Python
 # A simple generator function
 def my_gen():
     n = 1
@@ -59,7 +59,7 @@ next(my_gen)
 next(my_gen)
 ```
 
-```Python
+``` Python
 # python generators with a loop
 def even_integers_generator(n):
     for i in range(n):
@@ -87,7 +87,7 @@ next(even_integers_generator_object)
 - Items flow one by one through the entire pipeline
 - Pipeline functionality can be packaged into callable functions
 
-```Python
+``` Python
 def fibonacci_numbers(nums):
     x, y = 0, 1
     for _ in range(nums):
@@ -101,7 +101,7 @@ def square(nums):
 print(sum(square(fibonacci_numbers(10))))
 ```
 
-```Python
+``` Python
 # adding separate_names generator as another stage in pipeline
 
 def separate_names(names):
@@ -131,7 +131,7 @@ longest = max(lengths, key=lambda x:x[1])
 
 ### Basic context manager framework
 
-```Python
+``` Python
 from contextlib import contextmanager
 
 @contextmanager
@@ -145,7 +145,7 @@ def simple_context_manager(obj):
 
 ### More context manager examples
 
-```Python
+``` Python
 # this is a context manager
 
 from contextlib import contextmanager
@@ -198,7 +198,7 @@ with simple_context_manager(s):
 
 ### with...as... context manager
 
-```Python
+``` Python
 from time import time
 from contextlib import contextmanager
 
@@ -241,7 +241,7 @@ def new_log_file(name):
 
 ### Simplest couroutine
 
-```Python
+``` Python
 def coroutine_example():
     while True:
         x = yield
@@ -251,7 +251,7 @@ def coroutine_example():
 
 ### Coroutine convenience decorator to automatically call next on the coroutine generated
 
-```Python
+``` Python
 def coroutine_decorator(func):
     def wrap(*args, **kwargs):
         cr = func(*args, **kwargs)
